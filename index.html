@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>3Dprinting.uz — изделия и 3D печать в Ташкенте</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="3Dprinting.uz — готовые изделия и услуги 3D печати в Ташкенте. Вазочки, держатели, новогодний декор, индивидуальные заказы.">
+    <style>
+        :root {
+            --bg-dark: #050816;
+            --accent: #ffb02e;
+            --text-main: #f5f5f5;
+            --text-muted: #a5acc7;
+            --border-soft: rgba(255,255,255,0.08);
+            --danger: #ff4d4f;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+            background: radial-gradient(circle at top, #1b2340 0, #050816 45%, #02030a 100%);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { color:inherit; text-decoration:none; }
+        img { max-width:100%; display:block; }
+
+        .container {
+            width:100%;
+            max-width:1150px;
+            margin:0 auto;
+            padding:0 16px;
+        }
+
+        /* HEADER */
+
+        header {
+            position:sticky;
+            top:0;
+            z-index:50;
+            backdrop-filter:blur(14px);
+            background:linear-gradient(to bottom, rgba(5,8,22,0.96), rgba(5,8,22,0.8), transparent);
+            border-bottom:1px solid rgba(255,255,255,0.07);
+        }
+
+        .nav {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 0;
+        }
+
+        .logo {
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .logo-img {
+            width:38px;
+            height:38px;
+            border-radius:999px;
+            overflow:hidden;
+            border:1px solid rgba(148,163,184,0.7);
+            background:rgba(15,23,42,0.9);
+        }
+
+        .logo-img img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .logo-text-main {
+            font-weight:700;
+            letter-spacing:0.02em;
+            font-size:18px;
+        }
+
+        .logo-text-sub {
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .nav-links {
+            display:flex;
+            gap:20px;
+            font-size:14px;
+        }
+
+        .nav-links a {
+            position:relative;
+            color:var(--text-muted);
+            padding-bottom:4px;
+        }
+
+        .nav-links a::after {
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:0;
+            height:2px;
+            border-radius:999px;
+            background:linear-gradient(90deg, var(--accent), #ff7a1a);
+            transition:width 0.2s;
+        }
+
+        .nav-links a:hover { color:var(--text-main); }
+        .nav-links a:hover::after { width:100%; }
+
+        .nav-cta {
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .btn {
+            border-radius:999px;
+            padding:8px 16px;
+            border:1px solid transparent;
+            font-size:14px;
+            cursor:pointer;
+            transition:transform 0.13s, box-shadow 0.13s, background 0.13s, border-color 0.13s;
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            white-space:nowrap;
+        }
+
+        .btn-primary {
+            background: radial-gradient(circle at 20% 0%, #fff3d1, #ffb02e 40%, #ff7a1a 100%);
+            color:#1b1205;
+            box-shadow:0 0 18px rgba(255,176,46,0.5), 0 0 40px rgba(255,122,26,0.4);
+        }
+
+        .btn-primary:hover {
+            transform:translateY(-1px);
+            box-shadow:0 0 22px rgba(255,176,46,0.75), 0 0 45px rgba(255,122,26,0.7);
+        }
+
+        .btn-outline {
+            border-color:rgba(255,255,255,0.22);
+            background:rgba(5,8,22,0.7);
+            color:var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color:rgba(255,255,255,0.55);
+            background:rgba(5,8,22,0.95);
+            transform:translateY(-1px);
+        }
+
+        .nav-phone {
+            display:flex;
+            flex-direction:column;
+            align-items:flex-end;
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .nav-phone span {
+            font-weight:600;
+            color:var(--accent);
+            font-size:13px;
+        }
+
+        /* HERO */
+
+        .hero { padding:30px 0 40px; }
+
+        .hero-inner {
+            display:grid;
+            grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);
+            gap:40px;
+            align-items:center;
+        }
+
+        .hero-label {
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            padding:4px 10px;
+            border-radius:999px;
+            background:rgba(15,23,42,0.9);
+            border:1px solid rgba(148,163,184,0.4);
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .hero-label-dot {
+            width:8px;
+            height:8px;
+            border-radius:999px;
+            background:#22c55e;
+            box-shadow:0 0 10px rgba(34,197,94,0.9);
+        }
+
+        .hero-title {
+            margin-top:16px;
+            font-size:clamp(28px,4vw,38px);
+            font-weight:800;
+            letter-spacing:0.02em;
+        }
+
+        .hero-title span {
+            background:linear-gradient(90deg, #ffb02e,#ff7a1a,#ffd966);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+            text-shadow:0 0 25px rgba(255,176,46,0.4);
+        }
+
+        .hero-subtitle {
+            margin-top:14px;
+            font-size:15px;
+            color:var(--text-muted);
+        }
+
+        .hero-badges {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:20px;
+        }
+
+        .hero-badge {
+            padding:4px 10px;
+            border-radius:999px;
+            font-size:12px;
+            border:1px solid rgba(148,163,184,0.5);
+            background:rgba(15,23,42,0.85);
+            color:var(--text-muted);
+        }
+
+        .hero-cta {
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            margin-top:22px;
+        }
+
+        .hero-note {
+            margin-top:12px;
+            font-size:12px;
+            color:var(--text-muted);
+        }
+
+        .hero-note strong { color:var(--accent); }
+
+        .hero-right { position:relative; padding:18px; }
+
+        .hero-card {
+            border-radius:20px;
+            background:radial-gradient(circle at 0 0, rgba(255,255,255,0.1), rgba(5,8,22,0.98) 55%);
+            border:1px solid rgba(148,163,184,0.55);
+            padding:18px;
+            box-shadow:0 20px 50px rgba(15,23,42,0.9), 0 0 60px rgba(59,130,246,0.4);
+            position:relative;
+            overflow:hidden;
+        }
+
+        .hero-card-header {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:10px;
+            font-size:12px;
+        }
+
+        .hero-card-header span:first-child { color:var(--text-muted); }
+        .hero-card-header span:last-child { color:var(--accent); font-weight:600; }
+
+        .hero-printer {
+            margin:14px 0;
+            border-radius:12px;
+            border:1px solid rgba(148,163,184,0.5);
+            background:radial-gradient(circle at 10% 0, rgba(96,165,250,0.3), transparent 55%), radial-gradient(circle at 100% 100%, rgba(251,191,36,0.35), transparent 55%), #020617;
+            padding:14px;
+            display:grid;
+            grid-template-columns:1.1fr 1.2fr;
+            gap:10px;
+        }
+
+        .printer-frame {
+            border-radius:10px;
+            background:radial-gradient(circle at 10% 0, rgba(15,23,42,1), rgba(15,23,42,0.45));
+            border:1px solid rgba(148,163,184,0.35);
+            padding:8px;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .printer-bed {
+            position:absolute;
+            left:10%;
+            right:10%;
+            bottom:10px;
+            height:5px;
+            background:linear-gradient(90deg, #020617,#1f2937,#020617);
+            border-radius:999px;
+            box-shadow:0 0 12px rgba(148,163,184,0.7);
+        }
+
+        .printer-print {
+            position:absolute;
+            bottom:15px;
+            left:30%;
+            right:30%;
+            height:38px;
+            border-radius:10px 10px 4px 4px;
+            background:linear-gradient(180deg,#facc15,#ea580c);
+            box-shadow:0 0 12px rgba(250,204,21,0.85),0 0 28px rgba(234,88,12,0.9);
+        }
+
+        .printer-head {
+            position:absolute;
+            top:12px;
+            left:22%;
+            right:22%;
+            height:16px;
+            border-radius:8px;
+            background:linear-gradient(90deg,#020617,#111827,#020617);
+            box-shadow:0 0 8px rgba(15,23,42,0.8);
+        }
+
+        .printer-rod {
+            position:absolute;
+            top:8px;
+            left:16%;
+            right:16%;
+            height:3px;
+            border-radius:999px;
+            background:linear-gradient(90deg,#e5e7eb,#6b7280,#e5e7eb);
+            box-shadow:0 0 6px rgba(229,231,235,0.6);
+        }
+
+        .printer-cable {
+            position:absolute;
+            top:4px;
+            right:18%;
+            width:40px;
+            height:30px;
+            border-radius:40px;
+            border:2px solid rgba(75,85,99,0.9);
+            border-left-color:transparent;
+            border-bottom-color:transparent;
+        }
+
+        .hero-card-list {
+            font-size:11px;
+            color:var(--text-muted);
+            display:grid;
+            gap:4px;
+        }
+
+        .hero-card-list strong { color:var(--text-main); }
+
+        .hero-card-footer {
+            margin-top:10px;
+            display:flex;
+            justify-content:space-between;
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .hero-glow {
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            opacity:0.8;
+            mix-blend-mode:screen;
+            background:radial-gradient(circle at 10% 10%, rgba(66,153,225,0.18), transparent 55%), radial-gradient(circle at 100% 0, rgba(59,130,246,0.22), transparent 60%), radial-gradient(circle at 0 100%, rgba(251,191,36,0.22), transparent 60%);
+        }
+
+        /* SECTIONS */
+
+        section { padding:32px 0; }
+
+        .section-header { margin-bottom:20px; }
+
+        .section-eyebrow {
+            font-size:11px;
+            color:var(--accent);
+            letter-spacing:0.12em;
+            text-transform:uppercase;
+        }
+
+        .section-title {
+            margin-top:6px;
+            font-size:22px;
+        }
+
+        .section-subtitle {
+            margin-top:6px;
+            font-size:13px;
+            color:var(--text-muted);
+            max-width:520px;
+        }
+
+        /* CATALOG */
+
+        .catalog-grid {
+            display:grid;
+            grid-template-columns:repeat(5,minmax(0,1fr));
+            gap:18px;
+        }
+
+        .product-card {
+            border-radius:16px;
+            border:1px solid var(--border-soft);
+            background:rgba(5,8,22,0.96);
+            padding:10px;
+            cursor:pointer;
+            display:flex;
+            flex-direction:column;
+            box-shadow:0 12px 30px rgba(15,23,42,0.7);
+            transition:transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .product-card:hover {
+            transform:translateY(-3px);
+            box-shadow:0 18px 40px rgba(15,23,42,0.95);
+            border-color:rgba(251,191,36,0.7);
+        }
+
+        .product-img-wrap {
+            border-radius:12px;
+            overflow:hidden;
+            background:#020617;
+            margin-bottom:8px;
+            position:relative;
+        }
+
+        .product-img-wrap img {
+            width:100%;
+            height:170px;
+            object-fit:cover;
+        }
+
+        .product-title {
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:4px;
+        }
+
+        .product-price {
+            font-size:15px;
+            font-weight:700;
+            color:var(--accent);
+        }
+
+        .product-note {
+            font-size:11px;
+            color:var(--text-muted);
+            margin-top:2px;
+        }
+
+        /* MODAL */
+
+        .modal-backdrop {
+            position:fixed;
+            inset:0;
+            background:rgba(15,23,42,0.85);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            z-index:80;
+        }
+
+        .modal-backdrop.open { display:flex; }
+
+        .modal-window {
+            width:100%;
+            max-width:640px;
+            max-height:90vh;
+            border-radius:18px;
+            background:radial-gradient(circle at 0 0, rgba(59,130,246,0.16), rgba(5,8,22,0.98) 60%);
+            border:1px solid rgba(148,163,184,0.7);
+            box-shadow:0 24px 60px rgba(0,0,0,0.9);
+            padding:14px;
+            display:grid;
+            grid-template-columns:minmax(0,1.2fr) minmax(0,1.1fr);
+            gap:14px;
+            overflow:hidden;
+            position:relative;
+        }
+
+        .modal-img {
+            border-radius:14px;
+            overflow:hidden;
+            background:#020617;
+        }
+
+        .modal-img img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .modal-img-grid {
+            display:grid;
+            gap:8px;
+        }
+
+        .modal-body {
+            font-size:13px;
+            color:var(--text-muted);
+            display:flex;
+            flex-direction:column;
+            gap:6px;
+        }
+
+        .modal-title {
+            font-size:18px;
+            font-weight:700;
+            color:var(--text-main);
+        }
+
+        .modal-price {
+            font-size:16px;
+            font-weight:700;
+            color:var(--accent);
+        }
+
+        .modal-close {
+            position:absolute;
+            top:10px;
+            right:12px;
+            width:26px;
+            height:26px;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.8);
+            background:rgba(15,23,42,0.95);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+            font-size:16px;
+            color:#e5e7eb;
+        }
+
+        .modal-meta {
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .modal-actions {
+            margin-top:8px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+        }
+
+        /* GENERIC CARDS / GRIDS */
+
+        .card-grid {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:18px;
+        }
+
+        .card {
+            border-radius:16px;
+            border:1px solid var(--border-soft);
+            background:rgba(5,8,22,0.96);
+            padding:14px;
+            box-shadow:0 12px 30px rgba(15,23,42,0.7);
+            position:relative;
+            overflow:hidden;
+        }
+
+        .card::before {
+            content:"";
+            position:absolute;
+            inset:-60%;
+            background:radial-gradient(circle at 0 0, rgba(255,176,46,0.1), transparent 55%);
+            opacity:0;
+            transition:opacity 0.18s;
+        }
+
+        .card:hover::before { opacity:1; }
+
+        .card-icon {
+            width:30px;
+            height:30px;
+            border-radius:10px;
+            background:radial-gradient(circle at 30% 0, #fefce8,#fde047 40%,#f97316 100%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            margin-bottom:10px;
+        }
+
+        .card-title {
+            font-size:14px;
+            margin-bottom:4px;
+            font-weight:600;
+        }
+
+        .card-text {
+            font-size:13px;
+            color:var(--text-muted);
+        }
+
+        /* WORKS */
+
+        .works-grid {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:14px;
+        }
+
+        .work-item {
+            border-radius:14px;
+            border:1px solid var(--border-soft);
+            background:rgba(5,8,22,0.96);
+            padding:10px;
+            font-size:12px;
+            cursor:pointer;
+            transition:transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+        }
+
+        .work-item:hover {
+            transform:translateY(-2px);
+            box-shadow:0 18px 36px rgba(15,23,42,0.9);
+            border-color:rgba(251,191,36,0.7);
+        }
+
+        .work-preview {
+            border-radius:10px;
+            height:120px;
+            overflow:hidden;
+            margin-bottom:6px;
+        }
+
+        .work-preview img {
+            width:100%;
+            height:100%;
+            object-fit:cover;
+        }
+
+        .work-title {
+            font-weight:600;
+        }
+
+        .work-tagline {
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        /* PRICING */
+
+        .pricing {
+            border-radius:18px;
+            border:1px solid var(--border-soft);
+            background:radial-gradient(circle at 0 0, rgba(251,191,36,0.2), rgba(5,8,22,0.98) 60%);
+            padding:16px;
+            display:grid;
+            grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+            gap:16px;
+        }
+
+        .pricing-main-title { font-size:18px; }
+
+        .pricing-main-note {
+            margin-top:6px;
+            font-size:13px;
+            color:var(--text-muted);
+        }
+
+        .pricing-table {
+            margin-top:10px;
+            width:100%;
+            border-collapse:collapse;
+            font-size:13px;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding:6px 6px;
+            border-bottom:1px solid rgba(255,255,255,0.12);
+        }
+
+        .pricing-table th {
+            text-align:left;
+            font-weight:500;
+            color:var(--text-muted);
+            font-size:12px;
+        }
+
+        .pricing-table tr:last-child td { border-bottom:none; }
+
+        .pricing-tag {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        .pricing-right {
+            display:grid;
+            gap:8px;
+            font-size:12px;
+            color:var(--text-muted);
+        }
+
+        .steps {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:10px;
+            margin-top:12px;
+        }
+
+        .step { font-size:12px; color:var(--text-muted); }
+
+        .step-num {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:22px;
+            height:22px;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.6);
+            font-size:11px;
+            margin-bottom:4px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display:grid;
+            grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+            gap:18px;
+        }
+
+        .about-card {
+            border-radius:16px;
+            border:1px solid var(--border-soft);
+            background:rgba(5,8,22,0.96);
+            padding:14px;
+            font-size:13px;
+            color:var(--text-muted);
+        }
+
+        .about-highlights {
+            display:grid;
+            grid-template-columns:repeat(3,minmax(0,1fr));
+            gap:10px;
+            margin-top:10px;
+        }
+
+        .about-pill {
+            border-radius:999px;
+            border:1px dashed rgba(148,163,184,0.6);
+            padding:6px 10px;
+            font-size:11px;
+            text-align:center;
+        }
+
+        .about-metric {
+            font-size:18px;
+            font-weight:700;
+            color:var(--accent);
+        }
+
+        .about-metric-label {
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        /* CONTACTS */
+
+        .contact-grid {
+            display:grid;
+            grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+            gap:18px;
+        }
+
+        .contact-card {
+            border-radius:16px;
+            border:1px solid var(--border-soft);
+            background:rgba(5,8,22,0.96);
+            padding:14px;
+        }
+
+        .contact-list {
+            display:grid;
+            gap:8px;
+            font-size:13px;
+        }
+
+        .contact-item-label {
+            font-size:11px;
+            color:var(--text-muted);
+            text-transform:uppercase;
+            letter-spacing:0.08em;
+        }
+
+        .contact-item-value { font-size:14px; }
+
+        .contact-messengers {
+            margin-top:10px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .messenger-pill {
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.7);
+            padding:6px 10px;
+            font-size:12px;
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            cursor:pointer;
+        }
+
+        .messenger-dot {
+            width:9px;
+            height:9px;
+            border-radius:999px;
+        }
+
+        .messenger-dot.telegram {
+            background:#3b82f6;
+            box-shadow:0 0 10px rgba(59,130,246,0.8);
+        }
+
+        .contact-form {
+            display:grid;
+            gap:8px;
+            margin-top:8px;
+        }
+
+        .field-label {
+            font-size:12px;
+            color:var(--text-muted);
+        }
+
+        .field-input,
+        .field-textarea {
+            width:100%;
+            border-radius:10px;
+            border:1px solid rgba(148,163,184,0.6);
+            background:rgba(15,23,42,0.95);
+            padding:7px 9px;
+            font-size:13px;
+            color:var(--text-main);
+            outline:none;
+        }
+
+        .field-input:focus,
+        .field-textarea:focus {
+            border-color:var(--accent);
+            box-shadow:0 0 0 1px rgba(251,191,36,0.4);
+        }
+
+        .field-textarea { min-height:70px; resize:vertical; }
+
+        .contact-note {
+            margin-top:6px;
+            font-size:11px;
+            color:var(--text-muted);
+        }
+
+        /* Ошибка и тряска */
+
+        .field-error {
+            border-color:var(--danger);
+            box-shadow:0 0 0 1px rgba(255,77,79,0.5);
+        }
+
+        .error-text {
+            font-size:11px;
+            color:var(--danger);
+            margin-top:2px;
+        }
+
+        .shake {
+            animation:shake 0.25s linear 0s 2;
+        }
+
+        @keyframes shake {
+            0% { transform:translateX(0); }
+            25% { transform:translateX(-4px); }
+            50% { transform:translateX(4px); }
+            75% { transform:translateX(-4px); }
+            100% { transform:translateX(0); }
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top:1px solid rgba(148,163,184,0.3);
+            padding:16px 0 18px;
+            font-size:11px;
+            color:var(--text-muted);
+            background:radial-gradient(circle at 50% 0, rgba(37,99,235,0.25), transparent 55%);
+        }
+
+        .footer-inner {
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            align-items:center;
+            justify-content:space-between;
+        }
+
+        /* BURGER / RESPONSIVE */
+
+        .burger {
+            display:none;
+            width:26px;
+            height:26px;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,0.8);
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            gap:4px;
+            cursor:pointer;
+        }
+
+        .burger span {
+            width:14px;
+            height:1.5px;
+            background:#e5e7eb;
+            border-radius:999px;
+        }
+
+        .nav-mobile {
+            display:none;
+            position:absolute;
+            top:100%;
+            left:0;
+            right:0;
+            background:rgba(5,8,22,0.98);
+            border-bottom:1px solid rgba(148,163,184,0.4);
+        }
+
+        .nav-mobile.open { display:block; }
+
+        .nav-mobile-inner {
+            padding:10px 16px 16px;
+            display:grid;
+            gap:8px;
+            font-size:14px;
+        }
+
+        .nav-mobile a { color:var(--text-muted); }
+        .nav-mobile a:hover { color:var(--text-main); }
+
+        .nav-mobile-cta {
+            margin-top:8px;
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+        }
+
+        @media (max-width:900px) {
+            .hero-inner { grid-template-columns:minmax(0,1fr); }
+            .hero-right { order:-1; }
+
+            .card-grid,
+            .works-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+            .catalog-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+            .pricing,
+            .about-grid,
+            .contact-grid { grid-template-columns:minmax(0,1fr); }
+
+            .steps { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+            .about-highlights { grid-template-columns:repeat(2,minmax(0,1fr)); }
+
+            .nav-links,
+            .nav-cta { display:none; }
+
+            .burger { display:flex; }
+
+            .modal-window {
+                grid-template-columns:minmax(0,1fr);
+                max-width:90%;
+            }
+        }
+
+        @media (max-width:600px) {
+            .card-grid,
+            .works-grid,
+            .catalog-grid,
+            .steps,
+            .about-highlights { grid-template-columns:minmax(0,1fr); }
+
+            .hero { padding-top:16px; }
+            .section-title { font-size:19px; }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-img">
+                    <img src="img/logo.png" alt="3Dprinting.uz">
+                </div>
+                <div>
+                    <div class="logo-text-main">3Dprinting.uz</div>
+                    <div class="logo-text-sub">Изделия и услуги 3D печати</div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#catalog">Каталог</a>
+                <a href="#services">Услуги</a>
+                <a href="#works">Фотографии работ</a>
+                <a href="#pricing">Цены</a>
+                <a href="#contacts">Связаться и оформить заказ</a>
+            </div>
+            <div class="nav-cta">
+                <div class="nav-phone">
+                    <span>+998 97 839 2707</span>
+                    <div>@crealityyour3d</div>
+                </div>
+                <button class="btn btn-primary" onclick="scrollToId('catalog')">
+                    Смотреть каталог
+                </button>
+            </div>
+            <div class="burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+        <div class="nav-mobile" id="navMobile">
+            <div class="nav-mobile-inner">
+                <a href="#catalog" onclick="closeMobile()">Каталог</a>
+                <a href="#services" onclick="closeMobile()">Услуги</a>
+                <a href="#works" onclick="closeMobile()">Фотографии работ</a>
+                <a href="#pricing" onclick="closeMobile()">Цены</a>
+                <a href="#contacts" onclick="closeMobile()">Связаться и оформить заказ</a>
+                <div class="nav-mobile-cta">
+                    <button class="btn btn-primary" onclick="scrollToId('catalog');closeMobile()">
+                        Открыть каталог
+                    </button>
+                    <button class="btn btn-outline" onclick="scrollToId('contacts');closeMobile()">
+                        Связаться
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div>
+                <div class="hero-label">
+                    <span class="hero-label-dot"></span>
+                    <span>Готовые изделия и печать под заказ</span>
+                </div>
+                <h1 class="hero-title">
+                    Современные изделия из <span>3D печати</span><br>
+                    для дома, офиса и подарков
+                </h1>
+                <p class="hero-subtitle">
+                    Вазочки, держатели, новогодний декор и полезные аксессуары.
+                    Можно заказать готовые позиции из каталога или обсудить свой индивидуальный проект.
+                </p>
+                <div class="hero-badges">
+                    <div class="hero-badge">Аккуратная детальная печать</div>
+                    <div class="hero-badge">Индивидуальные размеры и цвета</div>
+                    <div class="hero-badge">Доставка по Ташкенту — 25 000 сум</div>
+                </div>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" onclick="scrollToId('catalog')">
+                        Открыть каталог
+                    </button>
+                    <button class="btn btn-outline" onclick="scrollToId('contacts')">
+                        Связаться в Telegram
+                    </button>
+                </div>
+                <p class="hero-note">
+                    <strong>Для своих идей</strong> можно просто отправить фото и размеры — поможем реализовать.
+                </p>
+            </div>
+
+            <div class="hero-right">
+                <div class="hero-card">
+                    <div class="hero-card-header">
+                        <span>Текущий заказ</span>
+                        <span>3Dprinting.uz</span>
+                    </div>
+                    <div class="hero-printer">
+                        <div class="printer-frame">
+                            <div class="printer-rod"></div>
+                            <div class="printer-head"></div>
+                            <div class="printer-cable"></div>
+                            <div class="printer-print"></div>
+                            <div class="printer-bed"></div>
+                        </div>
+                        <div class="hero-card-list">
+                            <div><strong>Изделие:</strong> вазочка для цветов</div>
+                            <div><strong>Материал:</strong> PLA · серебристый</div>
+                            <div><strong>Время печати:</strong> 7 ч 20 мин</div>
+                            <div><strong>Статус:</strong> печать идёт…</div>
+                        </div>
+                    </div>
+                    <div class="hero-card-footer">
+                        <span>Ташкент · сегодня</span>
+                        <span>Готовим новые изделия для каталога</span>
+                    </div>
+                    <div class="hero-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section id="catalog">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Каталог</div>
+                <h2 class="section-title">Готовые изделия 3Dprinting.uz</h2>
+                <p class="section-subtitle">
+                    Нажми на фото или название товара — откроется отдельное окно, как на маркетплейсе,
+                    с подробным описанием и кнопкой «Заказать».
+                </p>
+            </div>
+            <div class="catalog-grid">
+                <!-- 1. Benchy -->
+                <article class="product-card" onclick="openModal('modal-benchy')">
+                    <div class="product-img-wrap">
+                        <img src="img/benchy-1.jpg" alt="Держатель для флешек «Кораблик Benchy»">
+                    </div>
+                    <h3 class="product-title">Держатель для флешек «Кораблик Benchy»</h3>
+                    <div class="product-price">20 000 сум</div>
+                    <div class="product-note">Отдельные ячейки под USB, SD и microSD.</div>
+                </article>
+
+                <!-- 2. Вазочка -->
+                <article class="product-card" onclick="openModal('modal-vase')">
+                    <div class="product-img-wrap">
+                        <img src="img/vase.jpg" alt="Вазочка для цветов">
+                    </div>
+                    <h3 class="product-title">Вазочка для цветов 💐</h3>
+                    <div class="product-price">150 000 сум</div>
+                    <div class="product-note">Диаметр 13,3 см · высота 20 см.</div>
+                </article>
+
+                <!-- 3. Ёлочная игрушка -->
+                <article class="product-card" onclick="openModal('modal-ball')">
+                    <div class="product-img-wrap">
+                        <img src="img/toy.jpg" alt="Ёлочная игрушка">
+                    </div>
+                    <h3 class="product-title">Ёлочная игрушка</h3>
+                    <div class="product-price">20 000 сум</div>
+                    <div class="product-note">Лёгкий и небьющийся новогодний шар.</div>
+                </article>
+
+                <!-- 4. Снеговик -->
+                <article class="product-card" onclick="openModal('modal-snowman')">
+                    <div class="product-img-wrap">
+                        <img src="img/snowman.jpg" alt="Снеговик">
+                    </div>
+                    <h3 class="product-title">Снеговик</h3>
+                    <div class="product-price">25 000 сум</div>
+                    <div class="product-note">Фигурка для новогоднего настроения.</div>
+                </article>
+
+                <!-- 5. Подставка для телефона -->
+                <article class="product-card" onclick="openModal('modal-phone')">
+                    <div class="product-img-wrap">
+                        <img src="img/phone-stand.jpg" alt="Подставка для телефона">
+                    </div>
+                    <h3 class="product-title">Подставка для телефона</h3>
+                    <div class="product-price">25 000 сум</div>
+                    <div class="product-note">Удобно держит смартфон на столе или в машине.</div>
+                </article>
+            </div>
+
+            <p class="contact-note" style="margin-top:10px;">
+                Доставка по Ташкенту — <strong>25 000 сум</strong>. Отправка по Узбекистану — по договорённости.
+            </p>
+        </div>
+    </section>
+
+    <!-- УСЛУГИ -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Услуги</div>
+                <h2 class="section-title">Что ещё можно заказать</h2>
+                <p class="section-subtitle">
+                    Помимо готовых изделий из каталога, можно напечатать детали под твои задачи:
+                    держатели, корпуса, макеты, сувениры и другое.
+                </p>
+            </div>
+            <div class="card-grid">
+                <article class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3 class="card-title">Функциональные детали</h3>
+                    <p class="card-text">
+                        Корпуса, крепления, переходники, держатели. Изготавливаем по размерам и фото.
+                    </p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">🎁</div>
+                    <h3 class="card-title">Подарки и сувениры</h3>
+                    <p class="card-text">
+                        Фигурки, элементы декора, персональные подарки на праздники и мероприятия.
+                    </p>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📐</div>
+                    <h3 class="card-title">Подготовка моделей</h3>
+                    <p class="card-text">
+                        Помогаем с моделированием и подгонкой под печать, чтобы изделие получилось аккуратным.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФОТОГРАФИИ РАБОТ -->
+    <section id="works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Фотографии работ</div>
+                <h2 class="section-title">Как выглядят готовые изделия</h2>
+                <p class="section-subtitle">
+                    Реальные фото держателей, ваз и полезных аксессуаров. Все карточки ниже тоже кликабельные —
+                    открывают подробное описание товара.
+                </p>
+            </div>
+            <div class="works-grid">
+                <article class="work-item" onclick="openModal('modal-benchy')">
+                    <div class="work-preview">
+                        <img src="img/benchy-2.jpg" alt="Держатель для флешек «Кораблик Benchy»">
+                    </div>
+                    <div class="work-title">Держатель для флешек «Кораблик Benchy»</div>
+                    <div class="work-tagline">Для USB, SD и microSD</div>
+                </article>
+                <article class="work-item" onclick="openModal('modal-vase')">
+                    <div class="work-preview">
+                        <img src="img/vase.jpg" alt="Вазочка для цветов">
+                    </div>
+                    <div class="work-title">Вазочка для цветов</div>
+                    <div class="work-tagline">Рельефные грани и аккуратные слои</div>
+                </article>
+                <article class="work-item" onclick="openModal('modal-phone')">
+                    <div class="work-preview">
+                        <img src="img/phone-stand.jpg" alt="Подставка для телефона">
+                    </div>
+                    <div class="work-title">Подставка для телефона</div>
+                    <div class="work-tagline">Удобно смотреть видео и навигацию</div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЦЕНЫ -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Цены</div>
+                <h2 class="section-title">Индивидуальные изделия под заказ</h2>
+                <p class="section-subtitle">
+                    Для своих идей цена зависит от размеров, материала и сложности.
+                    Ниже примерная сетка — можно подправить под реальные расценки.
+                </p>
+            </div>
+            <div class="pricing">
+                <div>
+                    <div class="pricing-main-title">Печать и изготовление</div>
+                    <p class="pricing-main-note">
+                        Для точного расчёта достаточно прислать фото и примерные размеры или 3D-файл.
+                        Доставка по Ташкенту — <strong>25 000 сум</strong>.
+                    </p>
+                    <table class="pricing-table">
+                        <thead>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Ориентировочная цена</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Изготовление небольших аксессуаров</td>
+                            <td>от 15 000 сум</td>
+                        </tr>
+                        <tr>
+                            <td>Декор, вазы, фигурки</td>
+                            <td>от 25 000 сум</td>
+                        </tr>
+                        <tr>
+                            <td>Срочный заказ</td>
+                            <td>+5% к стоимости</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="pricing-tag">
+                        💬 Для постоянных клиентов и оптовых заказов можно обсудить индивидуальные условия.
+                    </p>
+                </div>
+                <div class="pricing-right">
+                    <div><strong>Как заказать индивидуальное изделие:</strong></div>
+                    <div>1. Отправляешь фото или 3D-файл в Telegram / WhatsApp.</div>
+                    <div>2. Обсуждаем размеры, цвет, сроки и стоимость.</div>
+                    <div>3. После согласования и предоплаты запускаем изготовление и отправляем фото результата.</div>
+
+                    <div style="margin-top:8px;"><strong>Что можно сделать:</strong></div>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-num">1</div>
+                            Держатели, органайзеры, подставки.
+                        </div>
+                        <div class="step">
+                            <div class="step-num">2</div>
+                            Вазы, элементы декора, подарки.
+                        </div>
+                        <div class="step">
+                            <div class="step-num">3</div>
+                            Наборы изделий под проект или мероприятие.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О НАС -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">О нас</div>
+                <h2 class="section-title">3Dprinting.uz</h2>
+                <p class="section-subtitle">
+                    Небольшая мастерская, где аккуратно и с вниманием относятся к каждому заказу:
+                    будь то одна вазочка или целый набор изделий.
+                </p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    Мы делаем изделия, которые приятно подарить и удобно использовать каждый день:
+                    держатели, подставки, вазы, новогодние украшения и многое другое.
+                    <br><br>
+                    Можно выбрать готовые позиции из каталога или обсудить свою идею.
+                    Главное — чётко проговорим детали перед началом работы, чтобы результат
+                    полностью устроил по форме, цвету и размерам.
+                    <div class="about-highlights">
+                        <div class="about-pill">
+                            <div class="about-metric">Качество</div>
+                            <div class="about-metric-label">аккуратные слои и формы</div>
+                        </div>
+                        <div class="about-pill">
+                            <div class="about-metric">Гибкость</div>
+                            <div class="about-metric-label">можно менять размер изделия</div>
+                        </div>
+                        <div class="about-pill">
+                            <div class="about-metric">Связь</div>
+                            <div class="about-metric-label">фото/видео по запросу</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <strong>Почему у нас удобно заказывать:</strong>
+                    <ul style="margin-top:6px; padding-left:18px;">
+                        <li>Общение в удобных мессенджерах: Telegram, WhatsApp, звонок.</li>
+                        <li>Можно заказать одно изделие или сразу набор.</li>
+                        <li>Помогаем подобрать цвет и форму под твой интерьер или задачу.</li>
+                        <li>Возможна доставка по Ташкенту и отправка по Узбекистану.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow">Связаться и оформить заказ</div>
+                <h2 class="section-title">Контакты</h2>
+                <p class="section-subtitle">
+                    Удобнее всего написать в Telegram: можно сразу прикрепить фото, ссылку на модель или скрин с идеей.
+                    Есть доставка по Ташкенту — <strong>25 000 сум</strong>.
+                </p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-list">
+                        <div>
+                            <div class="contact-item-label">Телефон</div>
+                            <div class="contact-item-value">+998 97 839 2707</div>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Telegram для заказа</div>
+                            <div class="contact-item-value">@rubavak_3dcreality</div>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Telegram-канал с работами</div>
+                            <div class="contact-item-value">@crealityyour3d</div>
+                        </div>
+                        <div>
+                            <div class="contact-item-label">Город</div>
+                            <div class="contact-item-value">Ташкент</div>
+                        </div>
+                    </div>
+                    <div class="contact-messengers">
+                        <div class="messenger-pill" onclick="openTelegram('@rubavak_3dcreality')">
+                            <span class="messenger-dot telegram"></span>
+                            <span>Написать для заказа</span>
+                        </div>
+                        <div class="messenger-pill" onclick="openTelegram('@crealityyour3d')">
+                            <span class="messenger-dot telegram"></span>
+                            <span>Наш канал @crealityyour3d</span>
+                        </div>
+                    </div>
+                    <p class="contact-note">
+                        В сообщении можно указать название товара из каталога или просто отправить фото того,
+                        что хочешь получить.
+                    </p>
+                </div>
+                <div class="contact-card">
+                    <div class="field-label">Быстрая заявка с сайта</div>
+                    <form class="contact-form" id="orderForm" onsubmit="handleForm(event)">
+                        <div>
+                            <label class="field-label">Имя</label>
+                            <input class="field-input" type="text" name="name" placeholder="Как к тебе обращаться?">
+                        </div>
+                        <div>
+                            <label class="field-label">Телефон (обязательно)</label>
+                            <input class="field-input" type="text" name="phone" id="phoneInput" placeholder="+998 97 ...">
+                            <div class="error-text" id="phoneError"></div>
+                        </div>
+                        <div>
+                            <label class="field-label">Telegram или другое (по желанию)</label>
+                            <input class="field-input" type="text" name="contact" placeholder="@username или мессенджер">
+                        </div>
+                        <div>
+                            <label class="field-label">Что хочешь заказать</label>
+                            <textarea class="field-textarea" name="message" placeholder="Напиши название изделия или опиши идею."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Отправить заявку
+                        </button>
+                    </form>
+                    <p class="contact-note" id="formNote">
+                        Номер телефона обязателен — без него заявка не отправится.
+                        Позже можно подключить отправку в Telegram-бота или на почту.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container footer-inner">
+        <div>© <span id="year"></span> 3Dprinting.uz · Ташкент</div>
+        <div>Каталог изделий и услуги по изготовлению на заказ.</div>
+    </div>
+</footer>
+
+<!-- МОДАЛЬНЫЕ ОКНА ТОВАРОВ -->
+
+<!-- Benchy -->
+<div class="modal-backdrop" id="modal-benchy">
+    <div class="modal-window">
+        <div class="modal-img modal-img-grid">
+            <img src="img/benchy-1.jpg" alt="Держатель для флешек «Кораблик Benchy»">
+            <img src="img/benchy-2.jpg" alt="Держатель для флешек «Кораблик Benchy» вид сверху">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">Держатель для флешек «Кораблик Benchy»</div>
+            <div class="modal-price">20 000 сум</div>
+            <p>
+                Оригинальный держатель в виде маленького кораблика.
+                Внутри предусмотрены отдельные отделения под:
+            </p>
+            <ul>
+                <li>USB-флешки;</li>
+                <li>SD-карты;</li>
+                <li>microSD-карты (без адаптера).</li>
+            </ul>
+            <p>
+                Карты и флешки лежат аккуратно и не теряются.
+                Кораблик хорошо смотрится на рабочем столе, в детской комнате или офисе.
+            </p>
+            <div class="modal-meta">
+                Цвет можно обсудить при заказе. Доставка по Ташкенту — 25 000 сум.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openTelegram('@rubavak_3dcreality')">
+                    Заказать в Telegram
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('modal-benchy')">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+        <div class="modal-close" onclick="closeModal('modal-benchy')">×</div>
+    </div>
+</div>
+
+<!-- Вазочка -->
+<div class="modal-backdrop" id="modal-vase">
+    <div class="modal-window">
+        <div class="modal-img">
+            <img src="img/vase.jpg" alt="Вазочка для цветов">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">Вазочка для цветов 💐</div>
+            <div class="modal-price">150 000 сум</div>
+            <p>
+                Стильная вазочка с плавными рельефными гранями — современный акцент для комнаты или рабочего стола.
+            </p>
+            <p>Размеры:</p>
+            <ul>
+                <li>диаметр — <strong>13,3 см</strong>;</li>
+                <li>высота — <strong>20 см</strong>.</li>
+            </ul>
+            <p>
+                Подходит для сухоцветов, искусственных и лёгких живых цветов.
+                По желанию можно выполнить в другом размере и цвете — стоимость изменится.
+            </p>
+            <div class="modal-meta">
+                При оформлении можно уточнить цвет и способ доставки. Доставка по Ташкенту — 25 000 сум.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openTelegram('@rubavak_3dcreality')">
+                    Обсудить заказ
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('modal-vase')">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+        <div class="modal-close" onclick="closeModal('modal-vase')">×</div>
+    </div>
+</div>
+
+<!-- Ёлочная игрушка -->
+<div class="modal-backdrop" id="modal-ball">
+    <div class="modal-window">
+        <div class="modal-img">
+            <img src="img/toy.jpg" alt="Ёлочная игрушка">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">Ёлочная игрушка</div>
+            <div class="modal-price">20 000 сум</div>
+            <p>
+                Лёгкая ёлочная игрушка с красивым рельефным узором.
+                Не бьётся, не боится детей и домашних животных.
+            </p>
+            <p>Подходит для украшения:</p>
+            <ul>
+                <li>домашней ёлки;</li>
+                <li>офиса или витрины;</li>
+                <li>фотозоны и новогоднего декора.</li>
+            </ul>
+            <p>
+                Можно сделать в разных цветах: золото, красный, зелёный, серебристый и др.
+            </p>
+            <div class="modal-meta">
+                Можно заказать поштучно или набором. Доставка по Ташкенту — 25 000 сум.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openTelegram('@rubavak_3dcreality')">
+                    Заказать комплект
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('modal-ball')">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+        <div class="modal-close" onclick="closeModal('modal-ball')">×</div>
+    </div>
+</div>
+
+<!-- Снеговик -->
+<div class="modal-backdrop" id="modal-snowman">
+    <div class="modal-window">
+        <div class="modal-img">
+            <img src="img/snowman.jpg" alt="Снеговик">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">Снеговик</div>
+            <div class="modal-price">25 000 сум</div>
+            <p>
+                Милый снеговик с яркой шапкой и аккуратными деталями.
+                Хорошо смотрится рядом с ёлкой, на полке или рабочем столе.
+            </p>
+            <p>Можно использовать как:</p>
+            <ul>
+                <li>новогоднюю фигурку-декор;</li>
+                <li>подарок ребёнку или друзьям;</li>
+                <li>элемент праздничной композиции.</li>
+            </ul>
+            <p>
+                По запросу можно обсудить вариант с другими цветами.
+            </p>
+            <div class="modal-meta">
+                Доставка по Ташкенту — 25 000 сум. Отправка по Узбекистану — по договорённости.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openTelegram('@rubavak_3dcreality')">
+                    Оформить заказ
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('modal-snowman')">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+        <div class="modal-close" onclick="closeModal('modal-snowman')">×</div>
+    </div>
+</div>
+
+<!-- Подставка для телефона -->
+<div class="modal-backdrop" id="modal-phone">
+    <div class="modal-window">
+        <div class="modal-img">
+            <img src="img/phone-stand.jpg" alt="Подставка для телефона">
+        </div>
+        <div class="modal-body">
+            <div class="modal-title">Подставка для телефона</div>
+            <div class="modal-price">25 000 сум</div>
+            <p>
+                Компактная подставка для телефона — удобно смотреть видео, навигацию и держать смартфон на виду.
+            </p>
+            <p>
+                Можно использовать:
+            </p>
+            <ul>
+                <li>на рабочем столе;</li>
+                <li>дома на тумбочке или кухне;</li>
+                <li>в машине, если нужно поставить телефон под углом.</li>
+            </ul>
+            <p>
+                Угол наклона и размеры можно обсудить при заказе.
+            </p>
+            <div class="modal-meta">
+                Цвет и материал можно подобрать под твой стиль. Доставка по Ташкенту — 25 000 сум.
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="openTelegram('@rubavak_3dcreality')">
+                    Заказать подставку
+                </button>
+                <button class="btn btn-outline" onclick="closeModal('modal-phone')">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+        <div class="modal-close" onclick="closeModal('modal-phone')">×</div>
+    </div>
+</div>
+
+<script>
+    function scrollToId(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+    }
+
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    const burger = document.getElementById('burger');
+    const navMobile = document.getElementById('navMobile');
+
+    if (burger && navMobile) {
+        burger.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+        });
+    }
+
+    function closeMobile() {
+        if (navMobile) navMobile.classList.remove('open');
+    }
+
+    function handleForm(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const name = form.name.value.trim();
+        const phone = form.phone.value.trim();
+        const contact = form.contact.value.trim();
+        const message = form.message.value.trim();
+
+        const phoneInput = document.getElementById('phoneInput');
+        const phoneError = document.getElementById('phoneError');
+        const note = document.getElementById('formNote');
+
+        phoneInput.classList.remove('field-error');
+        if (phoneError) phoneError.textContent = '';
+
+        if (!phone) {
+            phoneInput.classList.add('field-error');
+            if (phoneError) {
+                phoneError.textContent = 'Укажи номер телефона, чтобы мы могли с тобой связаться.';
+            }
+
+            form.classList.remove('shake');
+            void form.offsetWidth;
+            form.classList.add('shake');
+
+            if (note) {
+                note.textContent = 'Телефон не указан — заявка не отправлена.';
+            }
+            return;
+        }
+
+        const payloadText =
+            'Новая заявка с сайта 3Dprinting.uz:\n' +
+            'Имя: ' + (name || 'не указано') + '\n' +
+            'Телефон: ' + phone + '\n' +
+            'Доп. контакт: ' + (contact || 'не указан') + '\n' +
+            'Комментарий: ' + (message || 'не указан');
+
+        console.log(payloadText);
+        // Тут можно потом подключить Telegram-бота или отправку на e-mail.
+
+        if (note) {
+            note.textContent = 'Спасибо! Заявка принята. Мы свяжемся с тобой по указанному номеру.';
+        }
+
+        form.reset();
+    }
+
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    }
+
+    function openTelegram(username) {
+        const handle = username.replace('@', '');
+        window.open('https://t.me/' + handle, '_blank');
+    }
+
+    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) {
+                backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-backdrop.open').forEach(m => m.classList.remove('open'));
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+</body>
+</html>
